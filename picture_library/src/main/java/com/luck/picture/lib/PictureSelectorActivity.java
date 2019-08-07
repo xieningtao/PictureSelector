@@ -797,6 +797,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         int mediaType = PictureMimeType.isPictureType(pictureType);
         switch (mediaType) {
             case PictureConfig.TYPE_IMAGE:
+            case PictureConfig.TYPE_VIDEO:
                 // image
                 List<LocalMedia> selectedImages = adapter.getSelectedImages();
                 ImagesObservable.getInstance().saveLocalMedia(previewImages);
@@ -806,16 +807,16 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                         config.selectionMode == PictureConfig.SINGLE ? UCrop.REQUEST_CROP : UCropMulti.REQUEST_MULTI_CROP);
                 overridePendingTransition(R.anim.a5, 0);
                 break;
-            case PictureConfig.TYPE_VIDEO:
-                // video
-                if (config.selectionMode == PictureConfig.SINGLE) {
-                    result.add(media);
-                    onResult(result);
-                } else {
-                    bundle.putString("video_path", media.getPath());
-                    startActivity(PictureVideoPlayActivity.class, bundle);
-                }
-                break;
+//            case PictureConfig.TYPE_VIDEO:
+//                // video
+//                if (config.selectionMode == PictureConfig.SINGLE) {
+//                    result.add(media);
+//                    onResult(result);
+//                } else {
+//                    bundle.putString("video_path", media.getPath());
+//                    startActivity(PictureVideoPlayActivity.class, bundle);
+//                }
+//                break;
             case PictureConfig.TYPE_AUDIO:
                 // audio
                 if (config.selectionMode == PictureConfig.SINGLE) {

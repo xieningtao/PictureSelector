@@ -127,14 +127,14 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                     LocalMedia image = images.get(viewPager.getCurrentItem());
                     String pictureType = selectImages.size() > 0 ?
                             selectImages.get(0).getPictureType() : "";
-                    if (!TextUtils.isEmpty(pictureType)) {
-                        boolean toEqual = PictureMimeType.
-                                mimeToEqual(pictureType, image.getPictureType());
-                        if (!toEqual) {
-                            ToastManage.s(mContext,getString(R.string.picture_rule));
-                            return;
-                        }
-                    }
+//                    if (!TextUtils.isEmpty(pictureType)) {
+//                        boolean toEqual = PictureMimeType.
+//                                mimeToEqual(pictureType, image.getPictureType());
+//                        if (!toEqual) {
+//                            ToastManage.s(mContext,getString(R.string.picture_rule));
+//                            return;
+//                        }
+//                    }
                     // 刷新图片列表中图片状态
                     boolean isChecked;
                     if (!check.isSelected()) {

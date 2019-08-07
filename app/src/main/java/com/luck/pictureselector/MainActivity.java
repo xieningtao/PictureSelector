@@ -2,6 +2,7 @@ package com.luck.pictureselector;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.IdRes;
@@ -17,15 +18,20 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.luck.picture.lib.PicturePreviewActivity;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.observable.ImagesObservable;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.luck.pictureselector.adapter.GridImageAdapter;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.UCropMulti;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,14 +108,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     int mediaType = PictureMimeType.pictureToVideo(pictureType);
                     switch (mediaType) {
                         case 1:
+                        case 2:
                             // 预览图片 可自定长按保存路径
                             //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
                             PictureSelector.create(MainActivity.this).themeStyle(themeId).openExternalPreview(position, selectList);
+
+
+//                            List<LocalMedia> selectedImages = adapter.getSelectedImages();
+//                            Bundle bundle = new Bundle();
+//                            ImagesObservable.getInstance().saveLocalMedia(selectList);
+//                            bundle.putSerializable(PictureConfig.EXTRA_SELECT_LIST, (Serializable) selectList);
+//                            bundle.putInt(PictureConfig.EXTRA_POSITION, position);
+//                            Intent intent = new Intent();
+//                            intent.setClass(MainActivity.this, PicturePreviewActivity.class);
+//                            intent.putExtras(bundle);
+//                            startActivityForResult(intent,PictureConfig.CHOOSE_REQUEST);
                             break;
-                        case 2:
-                            // 预览视频
-                            PictureSelector.create(MainActivity.this).externalPictureVideo(media.getPath());
-                            break;
+
+//                            // 预览视频
+//                            PictureSelector.create(MainActivity.this).externalPictureVideo(media.getPath());
+//                            break;
                         case 3:
                             // 预览音频
                             PictureSelector.create(MainActivity.this).externalPictureAudio(media.getPath());

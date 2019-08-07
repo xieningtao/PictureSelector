@@ -315,13 +315,13 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
     private void changeCheckboxState(ViewHolder contentHolder, LocalMedia image) {
         boolean isChecked = contentHolder.check.isSelected();
         String pictureType = selectImages.size() > 0 ? selectImages.get(0).getPictureType() : "";
-        if (!TextUtils.isEmpty(pictureType)) {
-            boolean toEqual = PictureMimeType.mimeToEqual(pictureType, image.getPictureType());
-            if (!toEqual) {
-                ToastManage.s(context, context.getString(R.string.picture_rule));
-                return;
-            }
-        }
+//        if (!TextUtils.isEmpty(pictureType)) {
+//            boolean toEqual = PictureMimeType.mimeToEqual(pictureType, image.getPictureType());
+//            if (!toEqual) {
+//                ToastManage.s(context, context.getString(R.string.picture_rule));
+//                return;
+//            }
+//        }
         if (selectImages.size() >= maxSelectNum && !isChecked) {
             boolean eqImg = pictureType.startsWith(PictureConfig.IMAGE);
             String str = eqImg ? context.getString(R.string.picture_message_max_num, maxSelectNum)
